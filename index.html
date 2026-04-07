@@ -2,57 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Deep Link Button</title>
+  <title>Open App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f4f4f4;
-      margin: 0;
-    }
-    .container {
-      text-align: center;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    button {
-      padding: 12px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      background: #333;
-      color: #fff;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #555;
-    }
-  </style>
 </head>
 <body>
 
-<div class="container">
-  <h2>Open App via QR</h2>
-  <button onclick="openApp()">Open in App</button>
-</div>
+<h2>Open App</h2>
+
+<a href="com.innovaturelabs.squarenixInnov://qr/123" id="openLink">
+  <button>Open in App</button>
+</a>
 
 <script>
-  function openApp() {
-    const appUrl = "com.innovaturelabs.squarenixInnov://qr/123";
-    const fallbackUrl = "https://yourwebsite.com";
+  const appUrl = "com.innovaturelabs.squarenixInnov://qr/123";
+  const appStoreUrl = "https://apps.apple.com/app/id6761522671"; // replace
 
-    window.location.href = appUrl;
+  document.getElementById("openLink").addEventListener("click", function () {
+    const start = Date.now();
 
-    setTimeout(() => {
-      window.location.href = fallbackUrl;
-    }, 2000);
-  }
+    setTimeout(function () {
+      // If app didn’t open, redirect to App Store
+      if (Date.now() - start < 2000) {
+        window.location.href = appStoreUrl;
+      }
+    }, 1500);
+  });
 </script>
 
 </body>
